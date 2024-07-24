@@ -1,0 +1,23 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "source": "/home/mojito/Scripts/fastfetch_logos/cat_sur.jpeg"
+  },
+  "modules": [
+    "title",
+    "break",
+    "os",
+    "users",
+    "host",
+    "shell",
+    "wm",
+    "break",
+    "uptime",
+    "terminal",
+    "datetime",
+    "cpuusage",
+    "disk",
+    "break",
+    "colors"
+  ]
+}
