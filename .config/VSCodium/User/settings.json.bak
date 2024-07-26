@@ -2,6 +2,6 @@
   "workbench.colorTheme": "Gruvbox Dark Medium",
   "editor.fontFamily": "JetBrainsMono NFM Medium",
   "editor.fontLigatures": true,
-  "window.menuBarVisibility": "toggle",
-  "python.defaultInterpreterPath": "~/.local/share/Python_envs"
+  "python.defaultInterpreterPath": "~/.local/share/Python_envs",
+  "window.menuBarVisibility": "toggle"
 }

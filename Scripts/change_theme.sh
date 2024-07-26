@@ -3,11 +3,12 @@
 ######## KITTY THEME
 
 # Define the directory to scan
-KITTY_SETTINGS="/home/mojito/dotfiles/.config/kitty"
+DIR="/home/mojito/dotfiles/.config/kitty"
 
-# Find the files and store their paths in variables
-FILE1=$(find "$KITTY_SETTINGS" -name "kitty.conf")
-FILE2=$(find "$KITTY_SETTINGS" -name "_kitty.conf")
+FILE1=$(find "$DIR" -name "kitty.conf")
+FILE2=$(find "$DIR" -name "_kitty.conf")
+
+KITTY_CUR_CONF=$(head -1 "$FILE1")
 
 # Check if both files are found
 if [ -z "$FILE1" ] || [ -z "$FILE2" ]; then
@@ -17,14 +18,17 @@ fi
 
 # Function to swap file names
 swap_files() {
-    TEMPFILE="${KITTY_SETTINGS}/temp_swap_file.txt"
+    TEMPFILE="${DIR}/temp_swap_file.txt"
     mv "$FILE1" "$TEMPFILE"
     mv "$FILE2" "$FILE1"
     mv "$TEMPFILE" "$FILE2"
 }
 
-# Swap the files
-swap_files
+if [[ "$KITTY_CUR_CONF" == *"LIGHT"* && "$1" == "dark" ]]; then
+    swap_files
+elif [[ "$KITTY_CUR_CONF" == *"DARK"* && "$1" == "light" ]]; then
+    swap_files
+fi
 
 ######## VSCODE THEME
 
@@ -42,17 +46,33 @@ cp "$SETTINGS_PATH" "$SETTINGS_PATH.bak"
 CURRENT_THEME=$(jq -r '.["workbench.colorTheme"]' "$SETTINGS_PATH")
 
 # Determine the new theme based on the current theme
-if [ "$CURRENT_THEME" == "$DARK_THEME" ]; then
+if [[ "$CURRENT_THEME" == "$DARK_THEME" && "$1" == "light" ]]; then
     NEW_THEME="$LIGHT_THEME"
-elif [ "$CURRENT_THEME" == "$LIGHT_THEME" ]; then
+    jq --arg theme "$NEW_THEME" '.["workbench.colorTheme"] = $theme' "$SETTINGS_PATH.bak" > "$SETTINGS_PATH"
+elif [[ "$CURRENT_THEME" == "$LIGHT_THEME" && "$1" == "dark" ]]; then
     NEW_THEME="$DARK_THEME"
-else
-    # echo "Current theme is not recognized. No changes made."
+    jq --arg theme "$NEW_THEME" '.["workbench.colorTheme"] = $theme' "$SETTINGS_PATH.bak" > "$SETTINGS_PATH"
+fi
+
+######## HYPRLAND/WAYBAR THEME
+DIR="/home/mojito/dotfiles/.config/waybar"
+
+FILE1=$(find "$DIR" -name "style.css")
+FILE2=$(find "$DIR" -name "_style.css")
+
+WAYBAR_CUR_CONF=$(head -1 "$FILE1")
+
+# Check if both files are found
+if [ -z "$FILE1" ] || [ -z "$FILE2" ]; then
+    echo "One or both files not found."
     exit 1
 fi
 
-# Update the theme in settings.json
-jq --arg theme "$NEW_THEME" '.["workbench.colorTheme"] = $theme' "$SETTINGS_PATH.bak" > "$SETTINGS_PATH"
+if [[ "$WAYBAR_CUR_CONF" == *"LIGHT"* && "$1" == "dark" ]]; then
+    swap_files
+elif [[ "$WAYBAR_CUR_CONF" == *"DARK"* && "$1" == "light" ]]; then
+    swap_files
+fi
 
-######## HYPRLAND THEME
-#your_command arg1 arg2
+killall -SIGUSR2 waybar
+hyprctl reload
