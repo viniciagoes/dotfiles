@@ -69,7 +69,7 @@ button:hover {
 
 #workspaces button {
     padding: 0 5px;
-    background-color: rgba(242, 229, 188, 0.9);
+    background-color: transparent;
     color: rgba(60, 56, 54, 0.9);
 }
 

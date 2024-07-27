@@ -76,3 +76,24 @@ fi
 
 killall -SIGUSR2 waybar
 hyprctl reload
+
+######## WOFI THEME
+DIR="/home/mojito/dotfiles/.config/wofi"
+
+FILE1=$(find "$DIR" -name "style.css")
+FILE2=$(find "$DIR" -name "_style.css")
+
+WOFI_CUR_CONF=$(head -1 "$FILE1")
+
+# Check if both files are found
+if [ -z "$FILE1" ] || [ -z "$FILE2" ]; then
+    echo "One or both files not found."
+    exit 1
+fi
+
+if [[ "$WOFI_CUR_CONF" == *"LIGHT"* && "$1" == "dark" ]]; then
+    swap_files
+elif [[ "$WOFI_CUR_CONF" == *"DARK"* && "$1" == "light" ]]; then
+    swap_files
+fi
+

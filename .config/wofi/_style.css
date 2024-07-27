@@ -1,10 +1,10 @@
-/* LIGHT */
+/* DARK */
 
 window {
   font-family: "JetBrainsMonoNL Bold";
   margin: 0px;
   border: 1px solid rgba(168, 153, 132, 0.9);
-  background-color: rgba(242, 229, 188, 0.9);
+  background-color: rgba(40,40,40, 0.9);
   border-radius: 10px;
 }
 
@@ -12,8 +12,8 @@ window {
   margin: 5px ;
   border: 1px solid rgba(168, 153, 132, 0.9);
   box-shadow: none;
-  color: #3c3836;
-  background-color: rgba(242, 229, 188, 0.9);
+  color: #ebdbb2;
+  background-color: rgba(40,40,40, 0.9);
 }
 
 #inner-box {
@@ -36,7 +36,7 @@ window {
 #text {
   margin: 5px;
   border: none;
-  color: #3c3836;
+  color: #ebdbb2;
 }
 
 #entry {
@@ -48,8 +48,8 @@ window {
 }
 
 #entry:selected {
+  color: #ebdbb2;
   background-color: rgba(104, 157, 106, 0.9);
-  color: #3c3836;
   border-radius: 5px;
   border: none;
 }

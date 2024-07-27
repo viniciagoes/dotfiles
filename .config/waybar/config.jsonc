@@ -41,7 +41,8 @@
         "format": "  {}  "
     },
     "hyprland/window": {  
-    "format": "  {}  "
+    "format": "  {}  ",
+    "max-length": 80
     },
     "hyprland/workspaces": {
          "disable-scroll": false,

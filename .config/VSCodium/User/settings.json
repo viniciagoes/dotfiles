@@ -3,5 +3,6 @@
   "editor.fontFamily": "JetBrainsMono NFM Medium",
   "editor.fontLigatures": true,
   "python.defaultInterpreterPath": "~/.local/share/Python_envs",
-  "window.menuBarVisibility": "toggle"
+  "window.menuBarVisibility": "toggle",
+  "git.openRepositoryInParentFolders": "never"
 }

@@ -19,7 +19,6 @@ gsettings set org.gnome.desktop.interface font-name 'JetBrainsMonoNL Nerd Font P
 gsettings set org.gnome.desktop.interface icon-theme 'Qogir'
 gsettings set org.gnome.desktop.interface cursor-theme 'Qogir'
 
-# For nemo
 gsettings set org.gnome.desktop.default-applications.terminal exec kitty
 
 # notification daemon
